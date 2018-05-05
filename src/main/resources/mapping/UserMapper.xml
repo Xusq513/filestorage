@@ -11,7 +11,7 @@
     user_id, user_name, password, phone
   </sql>
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
-    select 
+    select
     <include refid="Base_Column_List" />
     from t_user
     where user_id = #{userId,jdbcType=INTEGER}
@@ -79,7 +79,7 @@
       phone = #{phone,jdbcType=VARCHAR}
     where user_id = #{userId,jdbcType=INTEGER}
   </update>
-  
+
   <!-- 这个方法是我自己加的 -->
   <select id="selectAllUser" resultMap="BaseResultMap">
     select
