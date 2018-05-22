@@ -27,4 +27,9 @@ public interface FileService {
      * @param fileData
      */
     public void delFile(FileData fileData);
+
+    /**
+     * 获取文件夹或者文件
+     * @param fileData
+     */
 }

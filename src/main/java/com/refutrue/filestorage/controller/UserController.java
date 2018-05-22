@@ -1,7 +1,11 @@
 package com.refutrue.filestorage.controller;
 
+import com.refutrue.filestorage.adapter.Cors;
 import com.refutrue.filestorage.domain.User;
 import com.refutrue.filestorage.service.UserService;
+import com.refutrue.filestorage.util.ResponseMsg;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -13,7 +17,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
  */
 @Controller
 @RequestMapping(value = "/user")
-public class UserController {
+public class UserController extends Cors {
+
+    private final static Logger logger = LoggerFactory.getLogger(UserController.class);
 
     @Autowired
     private UserService userService;
@@ -26,7 +32,7 @@ public class UserController {
 
     @ResponseBody
     @RequestMapping(value = "/login", produces = {"application/json;charset=UTF-8"})
-    public int loginUser(User user){
+    public ResponseMsg loginUser(User user){
         return userService.loginUser(user);
     }
 
