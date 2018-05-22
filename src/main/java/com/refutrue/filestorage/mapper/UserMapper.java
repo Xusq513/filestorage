@@ -17,6 +17,8 @@ public interface UserMapper {
 
     int updateByPrimaryKey(User record);
 
-    //这个方式我自己加的
+    //后来新增加的
+    List<User> selectUserByUsername(String username);
+
     List<User> selectAllUser();
 }

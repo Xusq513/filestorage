@@ -16,8 +16,29 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public int addUser(User user) {
-
         return userMapper.insertSelective(user);
+    }
+
+    @Override
+    public int loginUser(User user) {
+        List<User>  users = userMapper.selectUserByUsername(user.getUserName());
+        String password = user.getPassword();
+        if(users.size() == 0)
+        {
+            System.out.print("提示：用户名不存在");
+            return 0;
+        }
+        String password_s = users.get(0).getPassword();
+        if(password_s == password)
+        {
+            System.out.print("提示：登录成功！");
+            return 1;
+        }
+        else
+        {
+            System.out.print("提示：用户名或者密码错误！");
+            return 0;
+        }
     }
 
     /*

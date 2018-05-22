@@ -21,10 +21,10 @@
     where user_id = #{userId,jdbcType=INTEGER}
   </delete>
   <insert id="insert" parameterType="com.refutrue.filestorage.domain.User">
-    insert into t_user (user_id, user_name, password, 
-      phone)
-    values (#{userId,jdbcType=INTEGER}, #{userName,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, 
-      #{phone,jdbcType=VARCHAR})
+    insert into t_user
+    (user_id, user_name, password, phone)
+    values
+    (#{userId,jdbcType=INTEGER}, #{userName,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, #{phone,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.refutrue.filestorage.domain.User">
     insert into t_user
@@ -80,10 +80,14 @@
     where user_id = #{userId,jdbcType=INTEGER}
   </update>
 
-  <!-- 这个方法是我自己加的 -->
+  <!-- 以下方法是后来新增加的 -->
   <select id="selectAllUser" resultMap="BaseResultMap">
     select
-    <include refid="Base_Column_List" />
+    <include refid="Base_Column_List" />selectUserByUsername
     from t_user
+  </select>
+
+  <select id="selectUserByUsername" parameterType="java.lang.String" resultType="com.refutrue.filestorage.domain.User">
+    select * from t_user where user_name = #{userName,jdbcType=VARCHAR}
   </select>
 </mapper>

@@ -3,13 +3,13 @@ package com.refutrue.filestorage.domain;
 import java.io.Serializable;
 
 public class User implements Serializable {
-    private Integer userId;
+    private Integer userId = 0;
 
-    private String userName;
+    private String userName = "1";
 
-    private String password;
+    private String password = "root";
 
-    private String phone;
+    private String phone = "12345678912";
 
     private static final long serialVersionUID = 1L;
 
