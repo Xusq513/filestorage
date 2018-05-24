@@ -1,198 +1,152 @@
-<?xml version="1.0" encoding="UTF-8" ?>
-<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.refutrue.filestorage.mapper.FileMainMapper" >
-  <resultMap id="BaseResultMap" type="com.refutrue.filestorage.domain.FileMain" >
-    <id column="id" property="id" jdbcType="INTEGER" />
-    <result column="file_name" property="fileName" jdbcType="VARCHAR" />
-    <result column="file_type" property="fileType" jdbcType="VARCHAR" />
-    <result column="login_id" property="loginId" jdbcType="VARCHAR" />
-    <result column="client_id" property="clientId" jdbcType="INTEGER" />
-    <result column="parent_id" property="parentId" jdbcType="INTEGER" />
-    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
-    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
-    <result column="create_user" property="createUser" jdbcType="VARCHAR" />
-    <result column="update_user" property="updateUser" jdbcType="VARCHAR" />
-    <result column="file_size" property="fileSize" jdbcType="INTEGER" />
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.refutrue.filestorage.mapper.FileMainMapper">
+
+  <resultMap id="BaseResultMap" type="com.refutrue.filestorage.domain.FileMain">
+    <id column="id" jdbcType="VARCHAR" property="id" />
+    <result column="file_name" jdbcType="VARCHAR" property="fileName" />
+    <result column="file_type" jdbcType="VARCHAR" property="fileType" />
+    <result column="login_id" jdbcType="VARCHAR" property="loginId" />
+    <result column="client_id" jdbcType="VARCHAR" property="clientId" />
+    <result column="parent_id" jdbcType="VARCHAR" property="parentId" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+    <result column="create_user" jdbcType="VARCHAR" property="createUser" />
+    <result column="update_user" jdbcType="VARCHAR" property="updateUser" />
+    <result column="file_size" jdbcType="INTEGER" property="fileSize" />
+    <result column="file_desc" jdbcType="LONGVARCHAR" property="fileDesc" />
   </resultMap>
-  <resultMap id="ResultMapWithBLOBs" type="com.refutrue.filestorage.domain.FileMain" extends="BaseResultMap" >
-    <result column="file_desc" property="fileDesc" jdbcType="LONGVARCHAR" />
-  </resultMap>
-  <sql id="Base_Column_List" >
-    id, file_name, file_type, login_id, client_id, parent_id, create_time, update_time, 
-    create_user, update_user, file_size
-  </sql>
-  <sql id="Blob_Column_List" >
-    file_desc
-  </sql>
-  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Integer" >
-    select 
-    <include refid="Base_Column_List" />
-    ,
-    <include refid="Blob_Column_List" />
-    from file_main
-    where id = #{id,jdbcType=INTEGER}
-  </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
-    delete from file_main
-    where id = #{id,jdbcType=INTEGER}
-  </delete>
-  <insert id="insert" parameterType="com.refutrue.filestorage.domain.FileMain" >
-    insert into file_main (id, file_name, file_type, 
-      login_id, client_id, parent_id, 
-      create_time, update_time, create_user, 
-      update_user, file_size, file_desc
-      )
-    values (#{id,jdbcType=INTEGER}, #{fileName,jdbcType=VARCHAR}, #{fileType,jdbcType=VARCHAR}, 
-      #{loginId,jdbcType=VARCHAR}, #{clientId,jdbcType=INTEGER}, #{parentId,jdbcType=INTEGER}, 
-      #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, #{createUser,jdbcType=VARCHAR}, 
-      #{updateUser,jdbcType=VARCHAR}, #{fileSize,jdbcType=INTEGER}, #{fileDesc,jdbcType=LONGVARCHAR}
-      )
-  </insert>
-  <insert id="insertSelective" parameterType="com.refutrue.filestorage.domain.FileMain" >
+
+  <insert id="insertSelective" parameterType="com.refutrue.filestorage.domain.FileMain">
     insert into file_main
-    <trim prefix="(" suffix=")" suffixOverrides="," >
-      <if test="id != null" >
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
         id,
       </if>
-      <if test="fileName != null" >
+      <if test="fileName != null">
         file_name,
       </if>
-      <if test="fileType != null" >
+      <if test="fileType != null">
         file_type,
       </if>
-      <if test="loginId != null" >
+      <if test="loginId != null">
         login_id,
       </if>
-      <if test="clientId != null" >
+      <if test="clientId != null">
         client_id,
       </if>
-      <if test="parentId != null" >
+      <if test="parentId != null">
         parent_id,
       </if>
-      <if test="createTime != null" >
+      <if test="createTime != null">
         create_time,
       </if>
-      <if test="updateTime != null" >
+      <if test="updateTime != null">
         update_time,
       </if>
-      <if test="createUser != null" >
+      <if test="createUser != null">
         create_user,
       </if>
-      <if test="updateUser != null" >
+      <if test="updateUser != null">
         update_user,
       </if>
-      <if test="fileSize != null" >
+      <if test="fileSize != null">
         file_size,
       </if>
-      <if test="fileDesc != null" >
+      <if test="fileDesc != null">
         file_desc,
       </if>
     </trim>
-    <trim prefix="values (" suffix=")" suffixOverrides="," >
-      <if test="id != null" >
-        #{id,jdbcType=INTEGER},
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=VARCHAR},
       </if>
-      <if test="fileName != null" >
+      <if test="fileName != null">
         #{fileName,jdbcType=VARCHAR},
       </if>
-      <if test="fileType != null" >
+      <if test="fileType != null">
         #{fileType,jdbcType=VARCHAR},
       </if>
-      <if test="loginId != null" >
+      <if test="loginId != null">
         #{loginId,jdbcType=VARCHAR},
       </if>
-      <if test="clientId != null" >
-        #{clientId,jdbcType=INTEGER},
+      <if test="clientId != null">
+        #{clientId,jdbcType=VARCHAR},
       </if>
-      <if test="parentId != null" >
-        #{parentId,jdbcType=INTEGER},
+      <if test="parentId != null">
+        #{parentId,jdbcType=VARCHAR},
       </if>
-      <if test="createTime != null" >
+      <if test="createTime != null">
         #{createTime,jdbcType=TIMESTAMP},
       </if>
-      <if test="updateTime != null" >
+      <if test="updateTime != null">
         #{updateTime,jdbcType=TIMESTAMP},
       </if>
-      <if test="createUser != null" >
+      <if test="createUser != null">
         #{createUser,jdbcType=VARCHAR},
       </if>
-      <if test="updateUser != null" >
+      <if test="updateUser != null">
         #{updateUser,jdbcType=VARCHAR},
       </if>
-      <if test="fileSize != null" >
+      <if test="fileSize != null">
         #{fileSize,jdbcType=INTEGER},
       </if>
-      <if test="fileDesc != null" >
+      <if test="fileDesc != null">
         #{fileDesc,jdbcType=LONGVARCHAR},
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.refutrue.filestorage.domain.FileMain" >
+
+  <update id="updateByPrimaryKeySelective" parameterType="com.refutrue.filestorage.domain.FileMain">
     update file_main
-    <set >
-      <if test="fileName != null" >
+    <set>
+      <if test="fileName != null">
         file_name = #{fileName,jdbcType=VARCHAR},
       </if>
-      <if test="fileType != null" >
+      <if test="fileType != null">
         file_type = #{fileType,jdbcType=VARCHAR},
       </if>
-      <if test="loginId != null" >
+      <if test="loginId != null">
         login_id = #{loginId,jdbcType=VARCHAR},
       </if>
-      <if test="clientId != null" >
-        client_id = #{clientId,jdbcType=INTEGER},
+      <if test="clientId != null">
+        client_id = #{clientId,jdbcType=VARCHAR},
       </if>
-      <if test="parentId != null" >
-        parent_id = #{parentId,jdbcType=INTEGER},
+      <if test="parentId != null">
+        parent_id = #{parentId,jdbcType=VARCHAR},
       </if>
-      <if test="createTime != null" >
+      <if test="createTime != null">
         create_time = #{createTime,jdbcType=TIMESTAMP},
       </if>
-      <if test="updateTime != null" >
+      <if test="updateTime != null">
         update_time = #{updateTime,jdbcType=TIMESTAMP},
       </if>
-      <if test="createUser != null" >
+      <if test="createUser != null">
         create_user = #{createUser,jdbcType=VARCHAR},
       </if>
-      <if test="updateUser != null" >
+      <if test="updateUser != null">
         update_user = #{updateUser,jdbcType=VARCHAR},
       </if>
-      <if test="fileSize != null" >
+      <if test="fileSize != null">
         file_size = #{fileSize,jdbcType=INTEGER},
       </if>
-      <if test="fileDesc != null" >
+      <if test="fileDesc != null">
         file_desc = #{fileDesc,jdbcType=LONGVARCHAR},
       </if>
     </set>
-    where id = #{id,jdbcType=INTEGER}
+    where id = #{id,jdbcType=VARCHAR}
   </update>
-  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.refutrue.filestorage.domain.FileMain" >
-    update file_main
-    set file_name = #{fileName,jdbcType=VARCHAR},
-      file_type = #{fileType,jdbcType=VARCHAR},
-      login_id = #{loginId,jdbcType=VARCHAR},
-      client_id = #{clientId,jdbcType=INTEGER},
-      parent_id = #{parentId,jdbcType=INTEGER},
-      create_time = #{createTime,jdbcType=TIMESTAMP},
-      update_time = #{updateTime,jdbcType=TIMESTAMP},
-      create_user = #{createUser,jdbcType=VARCHAR},
-      update_user = #{updateUser,jdbcType=VARCHAR},
-      file_size = #{fileSize,jdbcType=INTEGER},
-      file_desc = #{fileDesc,jdbcType=LONGVARCHAR}
-    where id = #{id,jdbcType=INTEGER}
-  </update>
-  <update id="updateByPrimaryKey" parameterType="com.refutrue.filestorage.domain.FileMain" >
-    update file_main
-    set file_name = #{fileName,jdbcType=VARCHAR},
-      file_type = #{fileType,jdbcType=VARCHAR},
-      login_id = #{loginId,jdbcType=VARCHAR},
-      client_id = #{clientId,jdbcType=INTEGER},
-      parent_id = #{parentId,jdbcType=INTEGER},
-      create_time = #{createTime,jdbcType=TIMESTAMP},
-      update_time = #{updateTime,jdbcType=TIMESTAMP},
-      create_user = #{createUser,jdbcType=VARCHAR},
-      update_user = #{updateUser,jdbcType=VARCHAR},
-      file_size = #{fileSize,jdbcType=INTEGER}
-    where id = #{id,jdbcType=INTEGER}
-  </update>
+
+  <select id="selectByPid" parameterType="java.util.Map" resultMap="BaseResultMap">
+    SELECT
+    ID, FILE_NAME, FILE_TYPE, LOGIN_ID, CLIENT_ID, PARENT_ID, CREATE_TIME, UPDATE_TIME,
+    CREATE_USER, UPDATE_USER, FILE_SIZE
+    , FILE_DESC
+    FROM file_main
+    WHERE PARENT_ID = #{parentId}
+    AND LOGIN_ID = #{loginId}
+    ORDER BY UPDATE_TIME DESC
+  </select>
+
+
 </mapper>

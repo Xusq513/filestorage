@@ -1,10 +1,12 @@
 package com.refutrue.filestorage.domain;
 
+import com.refutrue.filestorage.util.DateUtil;
+
 import java.io.Serializable;
 import java.util.Date;
 
 public class FileMain implements Serializable {
-    private Integer id;
+    private String id;
 
     private String fileName;
 
@@ -12,9 +14,9 @@ public class FileMain implements Serializable {
 
     private String loginId;
 
-    private Integer clientId;
+    private String clientId;
 
-    private Integer parentId;
+    private String parentId;
 
     private Date createTime;
 
@@ -28,14 +30,16 @@ public class FileMain implements Serializable {
 
     private String fileDesc;
 
+    private String lastModifyTime;
+
     private static final long serialVersionUID = 1L;
 
-    public Integer getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(Integer id) {
-        this.id = id;
+    public void setId(String id) {
+        this.id = id == null ? null : id.trim();
     }
 
     public String getFileName() {
@@ -62,20 +66,20 @@ public class FileMain implements Serializable {
         this.loginId = loginId == null ? null : loginId.trim();
     }
 
-    public Integer getClientId() {
+    public String getClientId() {
         return clientId;
     }
 
-    public void setClientId(Integer clientId) {
-        this.clientId = clientId;
+    public void setClientId(String clientId) {
+        this.clientId = clientId == null ? null : clientId.trim();
     }
 
-    public Integer getParentId() {
+    public String getParentId() {
         return parentId;
     }
 
-    public void setParentId(Integer parentId) {
-        this.parentId = parentId;
+    public void setParentId(String parentId) {
+        this.parentId = parentId == null ? null : parentId.trim();
     }
 
     public Date getCreateTime() {
@@ -124,5 +128,13 @@ public class FileMain implements Serializable {
 
     public void setFileDesc(String fileDesc) {
         this.fileDesc = fileDesc == null ? null : fileDesc.trim();
+    }
+
+    public String getLastModifyTime() {
+        return this.lastModifyTime;
+    }
+
+    public void setLastModifyTime(String lastModifyTime) {
+        this.lastModifyTime = lastModifyTime;
     }
 }

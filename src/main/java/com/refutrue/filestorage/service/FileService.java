@@ -1,6 +1,10 @@
 package com.refutrue.filestorage.service;
 
 import com.refutrue.filestorage.domain.FileData;
+import com.refutrue.filestorage.domain.FileMain;
+
+import java.util.List;
+import java.util.Map;
 
 /**
  * @Author: xusq
@@ -11,25 +15,15 @@ import com.refutrue.filestorage.domain.FileData;
 public interface FileService {
 
     /**
-     * 新增文件或者文件夹的操作
-     * @param fileData
+     * 新增文件夹或者重命名的操作
+     * @param fileMain
+     * @return
      */
-    public void addFile(FileData fileData);
-
-    /**
-     * 修改文件夹或者文件的基本信息,包含文件夹的移动
-     * @param fileData
-     */
-    public void modFile(FileData fileData);
-
-    /**
-     * 删除文件夹或者文件
-     * @param fileData
-     */
-    public void delFile(FileData fileData);
+    public FileMain saveFileMsg(FileMain fileMain);
 
     /**
      * 获取文件夹或者文件
-     * @param fileData
+     * @param inMap
      */
+    public List<FileMain> getFileListByPid(Map<String,Object> inMap);
 }
