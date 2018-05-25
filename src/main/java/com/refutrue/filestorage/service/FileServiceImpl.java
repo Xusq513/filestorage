@@ -19,21 +19,29 @@ public class FileServiceImpl implements FileService{
     @Autowired
     private FileMainMapper fileMainMapper;
 
+    @Override
+    public FileMain addDir(FileMain fileMain) throws Exception{
+        String id = fileMain.getId();
+        // 新增时如果有ID直接抛出异常
+        if(StringUtil.isNotEmptyOrNull(id)){
+            throw new Exception("新增时ID不为空！");
+        }
+        fileMain.setId(UUID.randomUUID().toString());
+        fileMain.setCreateTime(new Date());
+        fileMain.setUpdateTime(new Date());
+        fileMain.setFileType("dir");
+        fileMainMapper.insertSelective(fileMain);
+        return fileMain;
+    }
 
     @Override
-    public FileMain saveFileMsg(FileMain fileMain) {
+    public FileMain modDir(FileMain fileMain) throws Exception{
         String id = fileMain.getId();
-        // 如果为空表示新增
         if(StringUtil.isEmptyOrNull(id)){
-            fileMain.setId(UUID.randomUUID().toString());
-            fileMain.setCreateTime(new Date());
-            fileMain.setUpdateTime(new Date());
-            fileMain.setFileType("dir");
-            fileMainMapper.insertSelective(fileMain);
-        }else{
-            fileMain.setUpdateTime(new Date());
-            fileMainMapper.updateByPrimaryKeySelective(fileMain);
+            throw new Exception("修改文件时ID为空！");
         }
+        fileMain.setUpdateTime(new Date());
+        fileMainMapper.updateByPrimaryKeySelective(fileMain);
         return fileMain;
     }
 

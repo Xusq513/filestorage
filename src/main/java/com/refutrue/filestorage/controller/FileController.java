@@ -39,7 +39,7 @@ public class FileController extends Cors {
     }
 
     @PostMapping(value="/file")
-    public ResponseMsg saveFileMsg(HttpServletRequest request, HttpServletResponse response){
+    public ResponseMsg saveFileMsg(HttpServletRequest request, HttpServletResponse response) throws Exception{
         ResponseMsg responseMsg = new ResponseMsg();
         // TODO 获取登录信息的先写死
         HttpSession session = request.getSession();
@@ -55,7 +55,29 @@ public class FileController extends Cors {
         fileMain.setFileName(fileName);
         fileMain.setParentId(pid);
         fileMain.setLoginId(loginId);
-        fileMain =  fileService.saveFileMsg(fileMain);
+        fileMain =  fileService.addDir(fileMain);
+        responseMsg.setData(fileMain);
+        return responseMsg;
+    }
+
+    @PutMapping(value="/file")
+    public ResponseMsg modDir(HttpServletRequest request, HttpServletResponse response) throws Exception{
+        ResponseMsg responseMsg = new ResponseMsg();
+        // TODO 获取登录信息的先写死
+        HttpSession session = request.getSession();
+        String loginId = "admin";
+        String id = StringUtil.obj2Str(request.getParameter("id")) ;
+        String fileName = StringUtil.obj2Str(request.getParameter("fileName"));
+        String pid = StringUtil.obj2Str(request.getParameter("pid"));
+        if(StringUtil.isEmptyOrNull(pid)){
+            pid = "root";
+        }
+        FileMain fileMain = new FileMain();
+        fileMain.setId(id);
+        fileMain.setFileName(fileName);
+        fileMain.setParentId(pid);
+        fileMain.setLoginId(loginId);
+        fileMain = fileService.modDir(fileMain);
         responseMsg.setData(fileMain);
         return responseMsg;
     }

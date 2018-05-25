@@ -15,14 +15,19 @@ import java.util.Map;
 public interface FileService {
 
     /**
-     * 新增文件夹或者重命名的操作
+     * 新增文件夹
      * @param fileMain
      * @return
      */
-    public FileMain saveFileMsg(FileMain fileMain);
+    public FileMain addDir (FileMain fileMain) throws Exception;
 
     /**
-     * 获取文件夹或者文件
+     * 修改文件夹
+     */
+    public FileMain modDir(FileMain fileMain) throws Exception;
+
+    /**
+     * 获取文件夹下所有文件夹和文件
      * @param inMap
      */
     public List<FileMain> getFileListByPid(Map<String,Object> inMap);
