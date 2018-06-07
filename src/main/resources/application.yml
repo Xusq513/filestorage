@@ -4,7 +4,7 @@
 spring:
     datasource:
         name: filestorage
-        url: jdbc:mysql://60.205.228.42:3306/filestorage?useUnicode=true&characterEncoding=utf-8
+        url: jdbc:mysql://60.205.228.42:3306/filestorage?useUnicode=true&characterEncoding=utf-8&useSSL=false
         username: root
         password: Ld203203
         # ʹ��druid����Դ
