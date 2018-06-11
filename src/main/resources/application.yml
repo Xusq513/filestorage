@@ -23,6 +23,8 @@ spring:
         testOnReturn: false
         poolPreparedStatements: true
         maxOpenPreparedStatements: 20
+    jmx:
+      enabled: false
 mybatis:
   mapper-locations: classpath:mapping/*.xml
   type-aliases-package: com.refutrue.filestorage
@@ -40,3 +42,23 @@ logging:
   level: root=INFO
           org.springframework.web=DEBUG
           org.hibernate=ERROR
+
+# =========================================================
+
+
+# 分布式文件系统FDFS配置
+
+
+# =========================================================
+
+fdfs:
+  soTimeout: 1500
+  connectTimeout: 600
+  thumbImage:             #缩略图生成参数
+    width: 150
+    height: 150
+  trackerList:            #TrackerList参数,支持多个
+    - 60.205.228.42:22122
+  pool:
+    max-total: 100
+    max-wait-millis: 60
