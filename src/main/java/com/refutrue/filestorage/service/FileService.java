@@ -1,6 +1,7 @@
 package com.refutrue.filestorage.service;
 
 import com.refutrue.filestorage.domain.FileData;
+import com.refutrue.filestorage.domain.FileDetail;
 import com.refutrue.filestorage.domain.FileMain;
 
 import java.util.List;
@@ -31,4 +32,9 @@ public interface FileService {
      * @param inMap
      */
     public List<FileMain> getFileListByPid(Map<String,Object> inMap);
+
+    /**
+     *
+     */
+    public FileMain saveFileStorage(FileMain fileMain, FileDetail fileDetail);
 }

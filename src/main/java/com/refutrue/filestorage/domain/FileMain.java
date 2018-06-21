@@ -26,11 +26,13 @@ public class FileMain implements Serializable {
 
     private String updateUser;
 
-    private Integer fileSize;
+    private Long fileSize;
 
     private String fileDesc;
 
     private String lastModifyTime;
+
+    private String downloadUrl;
 
     private static final long serialVersionUID = 1L;
 
@@ -114,11 +116,11 @@ public class FileMain implements Serializable {
         this.updateUser = updateUser == null ? null : updateUser.trim();
     }
 
-    public Integer getFileSize() {
+    public Long getFileSize() {
         return fileSize;
     }
 
-    public void setFileSize(Integer fileSize) {
+    public void setFileSize(Long fileSize) {
         this.fileSize = fileSize;
     }
 
@@ -136,5 +138,13 @@ public class FileMain implements Serializable {
 
     public void setLastModifyTime(String lastModifyTime) {
         this.lastModifyTime = lastModifyTime;
+    }
+
+    public String getDownloadUrl() {
+        return downloadUrl;
+    }
+
+    public void setDownloadUrl(String downloadUrl) {
+        this.downloadUrl = downloadUrl;
     }
 }

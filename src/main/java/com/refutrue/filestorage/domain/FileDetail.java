@@ -4,9 +4,9 @@ import java.io.Serializable;
 import java.util.Date;
 
 public class FileDetail implements Serializable {
-    private Integer id;
+    private String id;
 
-    private String implementClass;
+    private String url;
 
     private Date createTime;
 
@@ -14,24 +14,22 @@ public class FileDetail implements Serializable {
 
     private String createUser;
 
-    private String paramters;
-
     private static final long serialVersionUID = 1L;
 
-    public Integer getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(Integer id) {
-        this.id = id;
+    public void setId(String id) {
+        this.id = id == null ? null : id.trim();
     }
 
-    public String getImplementClass() {
-        return implementClass;
+    public String getUrl() {
+        return url;
     }
 
-    public void setImplementClass(String implementClass) {
-        this.implementClass = implementClass == null ? null : implementClass.trim();
+    public void setUrl(String url) {
+        this.url = url == null ? null : url.trim();
     }
 
     public Date getCreateTime() {
@@ -56,13 +54,5 @@ public class FileDetail implements Serializable {
 
     public void setCreateUser(String createUser) {
         this.createUser = createUser == null ? null : createUser.trim();
-    }
-
-    public String getParamters() {
-        return paramters;
-    }
-
-    public void setParamters(String paramters) {
-        this.paramters = paramters == null ? null : paramters.trim();
     }
 }
