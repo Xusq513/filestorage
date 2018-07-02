@@ -74,13 +74,15 @@ public class FileServiceImpl implements FileService{
 
     @Override
     public FileMain saveFileStorage(FileMain fileMain, FileDetail fileDetail) {
+        // TODO 这里的地址应该是配置的，先写死
+        String nginxUrl = "http://60.205.228.42:8903/";
         fileMain.setId(UUID.randomUUID().toString());
         fileMain.setUpdateTime(new Date());
         fileMain.setCreateTime(new Date());
         fileDetail.setId(UUID.randomUUID().toString());
         fileDetail.setCreateTime(new Date());
         fileMain.setClientId(fileDetail.getId());
-        fileMain.setDownloadUrl(fileDetail.getUrl());
+        fileMain.setDownloadUrl(nginxUrl + fileDetail.getUrl());
         fileMainMapper.insertSelective(fileMain);
         fileDetailMapper.insertSelective(fileDetail);
         return fileMain;

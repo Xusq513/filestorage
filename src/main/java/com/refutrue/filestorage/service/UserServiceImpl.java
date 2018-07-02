@@ -10,6 +10,8 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import java.util.List;
 
 @Service(value = "userService")
@@ -26,8 +28,9 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public ResponseMsg loginUser(User user) {
+    public ResponseMsg loginUser(User user,HttpServletRequest request) {
         ResponseMsg responseMsg = new ResponseMsg();
+        HttpSession session = request.getSession();
         List<User>  users = userMapper.selectUserByUsername(user.getUserName());
         String password = user.getPassword();
         if(users == null || users.size() == 0){
@@ -40,6 +43,7 @@ public class UserServiceImpl implements UserService {
         String password_s = users.get(0).getPassword();
         if(password.equals(password_s)){
             logger.info("【" + user.getUserName() + "】用户匹配成功!");
+            session.setAttribute("loginUser",users.get(0));
         }else{
             logger.info("【" + user.getUserName() + "】用户名或者密码错误!");
             responseMsg.setCode("500");

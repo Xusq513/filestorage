@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import javax.servlet.http.HttpServletRequest;
+
 /**
  * Created by Administrator on 2017/8/16.
  */
@@ -32,8 +34,8 @@ public class UserController extends Cors {
 
     @ResponseBody
     @RequestMapping(value = "/login", produces = {"application/json;charset=UTF-8"})
-    public ResponseMsg loginUser(User user){
-        return userService.loginUser(user);
+    public ResponseMsg loginUser(User user,HttpServletRequest request){
+        return userService.loginUser(user,request);
     }
 
     @ResponseBody
